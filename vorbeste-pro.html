@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#06070d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vorbește">
+<title>Vorbește · Румынский A1→C2</title>
+<link id="manifest" rel="manifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{
+  --bg:#06070d; --bg2:#0a0d18; --panel:#0e1322; --panel2:#121a2e;
+  --line:#1d2742; --line2:#2a3a63;
+  --cy:#22d3ee; --cy-d:#0891b2; --mg:#f43f9d; --pp:#a855f7; --lm:#a3e635; --gd:#fbbf24;
+  --tx:#dce6f7; --tx2:#8aa0c6; --tx3:#5b6f96;
+  --good:#34d399; --bad:#fb5d6a;
+  --glow-cy:0 0 18px rgba(34,211,238,.45); --glow-mg:0 0 18px rgba(244,63,157,.4);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--tx);font-family:"Exo 2",system-ui,sans-serif;font-size:16px;line-height:1.5;
+  background-image:
+    radial-gradient(900px 500px at 80% -10%, rgba(168,85,247,.10), transparent),
+    radial-gradient(800px 500px at -10% 10%, rgba(34,211,238,.10), transparent),
+    linear-gradient(rgba(34,211,238,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34,211,238,.035) 1px, transparent 1px);
+  background-size:auto,auto,38px 38px,38px 38px;
+  min-height:100vh;padding-bottom:88px;
+}
+.mono{font-family:"JetBrains Mono",monospace}
+h1,h2,h3{font-weight:800;letter-spacing:.4px;margin:0;line-height:1.15}
+.neon{color:var(--cy);text-shadow:var(--glow-cy)}
+.neon-mg{color:var(--mg);text-shadow:var(--glow-mg)}
+.ro{font-weight:600}
+button{font-family:inherit;cursor:pointer;color:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:14px 14px 0}
+.hdr{position:sticky;top:0;z-index:30;backdrop-filter:blur(10px);background:rgba(6,7,13,.78);border-bottom:1px solid var(--line)}
+.hdr-in{max-width:760px;margin:0 auto;padding:9px 14px;display:flex;align-items:center;gap:12px}
+.brand{font-weight:800;font-size:19px;letter-spacing:1px}
+.brand .b{color:var(--mg);text-shadow:var(--glow-mg)}
+.lvl-pill{font-family:"JetBrains Mono";font-size:11px;font-weight:700;border:1px solid var(--cy);color:var(--cy);border-radius:6px;padding:2px 7px;box-shadow:inset 0 0 10px rgba(34,211,238,.15)}
+.hdr-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.mini{display:flex;align-items:center;gap:5px;font-weight:700;font-size:13px;font-family:"JetBrains Mono"}
+.mini .i{font-size:14px}
+.gear{border:1px solid var(--line2);background:var(--panel);border-radius:9px;width:34px;height:34px;font-size:16px;display:flex;align-items:center;justify-content:center}
+.xpbar{height:3px;background:var(--line);position:relative;overflow:hidden}
+.xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--mg));box-shadow:var(--glow-cy);transition:width .5s}
+.nav{position:fixed;bottom:0;left:0;right:0;z-index:40;background:rgba(8,10,18,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+.nav-in{max-width:760px;width:100%;display:flex}
+.nav button{flex:1;background:none;border:none;padding:9px 2px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--tx3);font-size:10.5px;font-weight:700;position:relative}
+.nav button .ic{font-size:21px;line-height:1;filter:grayscale(.4);transition:.15s}
+.nav button.on{color:var(--cy)}
+.nav button.on .ic{filter:none;transform:translateY(-1px);text-shadow:var(--glow-cy)}
+.nav button.on::before{content:"";position:absolute;top:0;left:22%;right:22%;height:2px;background:var(--cy);box-shadow:var(--glow-cy);border-radius:2px}
+.card{background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:14px;position:relative}
+.card.glow{border-color:var(--line2);box-shadow:0 0 0 1px rgba(34,211,238,.06),0 14px 40px -22px rgba(34,211,238,.4)}
+.card .corner{position:absolute;top:0;right:0;width:34px;height:34px;border-top:2px solid var(--cy);border-right:2px solid var(--cy);border-top-right-radius:16px;opacity:.5}
+.eyebrow{font-family:"JetBrains Mono";font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--tx3);font-weight:500}
+.sub{color:var(--tx2);font-size:14px}
+.row{display:flex;gap:10px}.between{justify-content:space-between;align-items:center}
+.grid{display:grid;gap:12px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:1fr 1fr 1fr}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:15px;border:1px solid var(--cy-d);background:linear-gradient(180deg,rgba(34,211,238,.18),rgba(34,211,238,.06));color:#bdf3fc;border-radius:12px;padding:13px 18px;transition:.15s;text-shadow:0 0 8px rgba(34,211,238,.4)}
+.btn:hover{box-shadow:var(--glow-cy);border-color:var(--cy)}
+.btn:active{transform:translateY(1px)}
+.btn.block{width:100%}
+.btn.mg{border-color:#9d2766;background:linear-gradient(180deg,rgba(244,63,157,.2),rgba(244,63,157,.06));color:#ffc9e4;text-shadow:0 0 8px rgba(244,63,157,.4)}
+.btn.mg:hover{box-shadow:var(--glow-mg);border-color:var(--mg)}
+.btn.pp{border-color:#7c3aed;background:linear-gradient(180deg,rgba(168,85,247,.2),rgba(168,85,247,.06));color:#e3ccff}
+.btn.gd{border-color:#b8860b;background:linear-gradient(180deg,rgba(251,191,36,.2),rgba(251,191,36,.06));color:#ffe9a8;text-shadow:0 0 8px rgba(251,191,36,.4)}
+.btn.ghost{background:transparent;border-color:var(--line2);color:var(--tx2);text-shadow:none}
+.btn.ghost:hover{border-color:var(--cy);color:var(--cy);box-shadow:none}
+.btn.sm{padding:8px 13px;font-size:13px;border-radius:9px}
+.btn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:12px;text-align:center}
+.stat .n{font-family:"JetBrains Mono";font-weight:700;font-size:24px;line-height:1}
+.stat .l{font-size:11px;color:var(--tx3);margin-top:5px;text-transform:uppercase;letter-spacing:.06em}
+.quest{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+.quest:last-child{border-bottom:none}
+.quest .qi{width:32px;height:32px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--panel2);border:1px solid var(--line2)}
+.quest .qm{flex:1;min-width:0}
+.quest .qt{font-weight:700;font-size:14px}
+.quest .qbar{height:5px;background:var(--bg);border-radius:9px;overflow:hidden;margin-top:5px;border:1px solid var(--line)}
+.quest .qbar i{display:block;height:100%;background:linear-gradient(90deg,var(--lm),var(--cy));border-radius:9px;transition:.3s}
+.quest .qx{font-family:"JetBrains Mono";font-size:12px;color:var(--gd);font-weight:700;flex:none}
+.quest.done .qt{color:var(--good);text-decoration:line-through;opacity:.7}
+.quest.done .qx{color:var(--good)}
+.timer-d{font-family:"JetBrains Mono";font-weight:700;font-size:46px;letter-spacing:2px;text-align:center;color:var(--cy);text-shadow:var(--glow-cy)}
+.timer-d.run{animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.6}}
+.seg{display:flex;gap:6px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:5px;margin-bottom:14px}
+.seg button{flex:1;border:none;background:none;color:var(--tx2);font-weight:700;font-size:13px;padding:9px 4px;border-radius:8px}
+.seg button.on{background:linear-gradient(180deg,rgba(34,211,238,.2),rgba(34,211,238,.05));color:var(--cy);box-shadow:inset 0 0 12px rgba(34,211,238,.12)}
+.q-prompt{font-size:clamp(22px,6vw,30px);font-weight:700;text-align:center;margin:10px 0}
+.q-prompt .accent{color:var(--mg);text-shadow:var(--glow-mg)}
+.q-tag{text-align:center;font-family:"JetBrains Mono";font-size:12px;color:var(--tx3);letter-spacing:.12em;text-transform:uppercase}
+.tin{width:100%;font-family:"Exo 2";font-size:21px;font-weight:600;text-align:center;padding:13px;border-radius:12px;background:var(--bg2);border:1px solid var(--line2);color:var(--tx)}
+.tin:focus{outline:none;border-color:var(--cy);box-shadow:var(--glow-cy)}
+.tin.ok{border-color:var(--good);box-shadow:0 0 14px rgba(52,211,153,.35)}
+.tin.no{border-color:var(--bad);box-shadow:0 0 14px rgba(251,93,106,.35)}
+.dia{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+.dia button{border:1px solid var(--line2);background:var(--panel);border-radius:8px;padding:6px 11px;font-weight:700;font-size:17px;color:var(--cy)}
+.dia button:hover{border-color:var(--cy)}
+.opt{width:100%;text-align:left;border:1px solid var(--line2);background:var(--panel);border-radius:12px;padding:13px 15px;font-weight:600;font-size:16px;margin-bottom:9px;display:flex;align-items:center;gap:10px;transition:.12s}
+.opt:hover{border-color:var(--cy)}
+.opt.ok{border-color:var(--good);background:rgba(52,211,153,.12);color:var(--good)}
+.opt.no{border-color:var(--bad);background:rgba(251,93,106,.12);color:var(--bad)}
+.opt:disabled{cursor:default}
+.fb{border-radius:12px;padding:12px 15px;margin-top:12px;font-weight:700;border:1px solid var(--line2)}
+.fb.ok{border-color:var(--good);background:rgba(52,211,153,.1);color:var(--good)}
+.fb.no{border-color:var(--bad);background:rgba(251,93,106,.1);color:#ffb3ba}
+.fb .ans{color:#fff}.fb small{display:block;font-weight:500;color:var(--tx2);margin-top:3px;font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line2);background:var(--panel);border-radius:10px;padding:9px 13px;font-weight:600;font-size:16px}
+.chip:hover{border-color:var(--cy)}
+.ans-area{min-height:54px;border:1px dashed var(--line2);border-radius:12px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;background:var(--bg2);margin-bottom:12px}
+.ans-area .chip{border-color:var(--cy-d);color:var(--cy)}
+.ans-area:empty::before{content:"тапай слова ниже…";color:var(--tx3);font-size:14px;font-weight:500}
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+.grade button{border-radius:11px;padding:12px 4px;font-weight:800;font-size:13px;border:1px solid var(--line2);background:var(--panel)}
+.grade .g0{border-color:#7f1d2b;color:#fb7185}
+.grade .g3{border-color:#854d0e;color:var(--gd)}
+.grade .g4{border-color:#155e52;color:var(--good)}
+.grade .g5{border-color:var(--cy-d);color:var(--cy)}
+.grade small{display:block;font-family:"JetBrains Mono";font-size:9.5px;font-weight:500;color:var(--tx3);margin-top:2px}
+.spk{border:1px solid var(--line2);background:var(--panel);border-radius:50%;width:36px;height:36px;flex:none;display:inline-flex;align-items:center;justify-content:center;font-size:16px}
+.spk:hover{border-color:var(--cy);color:var(--cy);box-shadow:var(--glow-cy)}
+.reader p{margin:0 0 12px;font-size:17px;line-height:1.85}
+.reader .w{cursor:pointer;border-radius:4px;padding:0 1px}
+.reader .w:hover,.reader .w.act{background:rgba(34,211,238,.18);color:var(--cy);box-shadow:0 0 0 1px rgba(34,211,238,.25)}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;transform:translateY(110%);transition:transform .25s;background:linear-gradient(180deg,var(--panel2),var(--bg2));border-top:1px solid var(--cy);box-shadow:0 -10px 40px rgba(34,211,238,.18);border-radius:18px 18px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom))}
+.sheet.on{transform:translateY(0)}
+.sheet .h{display:flex;align-items:center;gap:12px}
+.sheet .word{font-weight:800;font-size:26px;color:var(--mg);text-shadow:var(--glow-mg)}
+.sheet .tr{color:var(--tx);font-size:18px;margin-top:2px}
+.sheet .x{margin-left:auto;border:none;background:none;font-size:24px;color:var(--tx3)}
+.tprog{height:8px;background:var(--bg);border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-bottom:16px}
+.tprog i{display:block;height:100%;background:linear-gradient(90deg,var(--mg),var(--cy));transition:.3s}
+.tag{display:inline-block;font-family:"JetBrains Mono";font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;border:1px solid var(--line2);color:var(--tx2)}
+.list-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:9px;background:var(--panel)}
+.list-item:hover{border-color:var(--line2)}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(3,4,8,.7);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px}
+.modal.on{display:flex}
+.modal .box{max-width:460px;width:100%;max-height:86vh;overflow:auto;background:linear-gradient(180deg,var(--panel),var(--bg2));border:1px solid var(--line2);border-radius:18px;padding:18px}
+.toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);z-index:90;background:#0b1120;border:1px solid var(--cy);color:var(--cy);font-weight:700;padding:11px 18px;border-radius:12px;box-shadow:var(--glow-cy);opacity:0;pointer-events:none;transition:.3s;font-size:14px}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.hidden{display:none!important}
+a{color:var(--cy)}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:var(--line2);border-radius:9px}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+:focus-visible{outline:2px solid var(--gd);outline-offset:2px}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="brand">Vorbe<span class="b">ște</span></div>
+    <span class="lvl-pill" id="lvlPill">A1</span>
+    <div class="hdr-right">
+      <span class="mini" title="Стрик"><span class="i">🔥</span><span id="hStreak">0</span></span>
+      <span class="mini" title="Опыт"><span class="i">⚡</span><span id="hXp">0</span></span>
+      <button class="gear" id="gearBtn" aria-label="Настройки">⚙️</button>
+    </div>
+  </div>
+  <div class="xpbar"><i id="xpFill"></i></div>
+</header>
+<main id="app" class="wrap"></main>
+<nav class="nav"><div class="nav-in" id="nav">
+  <button data-v="home" class="on"><span class="ic">🏠</span>Дом</button>
+  <button data-v="practice"><span class="ic">🎯</span>Практика</button>
+  <button data-v="deck"><span class="ic">🧠</span>Слова</button>
+  <button data-v="read"><span class="ic">📖</span>Чтение</button>
+  <button data-v="oath"><span class="ic">🛡️</span>Присяга</button>
+</div></nav>
+<div class="sheet" id="sheet">
+  <div class="h">
+    <div><div class="word ro" id="shWord"></div><div class="tr" id="shTr"></div></div>
+    <button class="x" id="shClose">✕</button>
+  </div>
+  <div class="row" style="margin-top:14px">
+    <button class="btn sm" id="shSpeak">🔊 Произнести</button>
+    <button class="btn mg sm" id="shAdd">➕ В словарь Anki</button>
+  </div>
+</div>
+<div class="modal" id="modal"><div class="box" id="modalBox"></div></div>
+<div class="toast" id="toast"></div>
+<script>
+/* ====== ДАННЫЕ: ГЛАГОЛЫ (шаблоны спряжения) ======
+   V(инф, перевод, причастие, "наст. 6 форм |", конъюнктив-3л, [полный конъюнктив])
+   Лица: eu|tu|el/ea|noi|voi|ei/ele */
+function V(inf,tr,part,pr,c3,cf){return{inf,tr,part,pr:pr.split('|'),c3,cf:cf?cf.split('|'):null};}
+const VERBS=[
+V("a fi","быть","fost","sunt|ești|este|suntem|sunteți|sunt","fie","fiu|fii|fie|fim|fiți|fie"),
+V("a avea","иметь","avut","am|ai|are|avem|aveți|au","aibă"),
+V("a face","делать","făcut","fac|faci|face|facem|faceți|fac","facă"),
+V("a merge","идти","mers","merg|mergi|merge|mergem|mergeți|merg","meargă"),
+V("a vrea","хотеть","vrut","vreau|vrei|vrea|vrem|vreți|vor","vrea"),
+V("a putea","мочь","putut","pot|poți|poate|putem|puteți|pot","poată"),
+V("a ști","знать","știut","știu|știi|știe|știm|știți|știu","știe"),
+V("a veni","приходить","venit","vin|vii|vine|venim|veniți|vin","vină"),
+V("a vedea","видеть","văzut","văd|vezi|vede|vedem|vedeți|văd","vadă"),
+V("a da","давать","dat","dau|dai|dă|dăm|dați|dau","dea"),
+V("a sta","находиться","stat","stau|stai|stă|stăm|stați|stau","stea"),
+V("a lua","брать","luat","iau|iei|ia|luăm|luați|iau","ia"),
+V("a bea","пить","băut","beau|bei|bea|bem|beți|beau","bea"),
+V("a mânca","есть (кушать)","mâncat","mănânc|mănânci|mănâncă|mâncăm|mâncați|mănâncă","mănânce"),
+V("a spune","сказать","spus","spun|spui|spune|spunem|spuneți|spun","spună"),
+V("a zice","говорить","zis","zic|zici|zice|zicem|ziceți|zic","zică"),
+V("a pune","класть","pus","pun|pui|pune|punem|puneți|pun","pună"),
+V("a ține","держать","ținut","țin|ții|ține|ținem|țineți|țin","țină"),
+V("a scrie","писать","scris","scriu|scrii|scrie|scriem|scrieți|scriu","scrie"),
+V("a citi","читать","citit","citesc|citești|citește|citim|citiți|citesc","citească"),
+V("a dormi","спать","dormit","dorm|dormi|doarme|dormim|dormiți|dorm","doarmă"),
+V("a vorbi","говорить","vorbit","vorbesc|vorbești|vorbește|vorbim|vorbiți|vorbesc","vorbească"),
+V("a lucra","работать","lucrat","lucrez|lucrezi|lucrează|lucrăm|lucrați|lucrează","lucreze"),
+V("a locui","проживать","locuit","locuiesc|locuiești|locuiește|locuim|locuiți|locuiesc","locuiască"),
+V("a învăța","учить(ся)","învățat","învăț|înveți|învață|învățăm|învățați|învață","învețe"),
+V("a iubi","любить","iubit","iubesc|iubești|iubește|iubim|iubiți|iubesc","iubească"),
+V("a cânta","петь","cântat","cânt|cânți|cântă|cântăm|cântați|cântă","cânte"),
+V("a juca","играть","jucat","joc|joci|joacă|jucăm|jucați|joacă","joace"),
+V("a pleca","уезжать","plecat","plec|pleci|pleacă|plecăm|plecați|pleacă","plece"),
+V("a ajunge","достигать","ajuns","ajung|ajungi|ajunge|ajungem|ajungeți|ajung","ajungă"),
+V("a începe","начинать","început","încep|începi|începe|începem|începeți|încep","înceapă"),
+V("a termina","заканчивать","terminat","termin|termini|termină|terminăm|terminați|termină","termine"),
+V("a aștepta","ждать","așteptat","aștept|aștepți|așteaptă|așteptăm|așteptați|așteaptă","aștepte"),
+V("a găsi","находить","găsit","găsesc|găsești|găsește|găsim|găsiți|găsesc","găsească"),
+V("a pierde","терять","pierdut","pierd|pierzi|pierde|pierdem|pierdeți|pierd","piardă"),
+V("a uita","забывать","uitat","uit|uiți|uită|uităm|uitați|uită","uite"),
+V("a cumpăra","покупать","cumpărat","cumpăr|cumperi|cumpără|cumpărăm|cumpărați|cumpără","cumpere"),
+V("a plăti","платить","plătit","plătesc|plătești|plătește|plătim|plătiți|plătesc","plătească"),
+V("a deschide","открывать","deschis","deschid|deschizi|deschide|deschidem|deschideți|deschid","deschidă"),
+V("a închide","закрывать","închis","închid|închizi|închide|închidem|închideți|închid","închidă"),
+V("a întreba","спрашивать","întrebat","întreb|întrebi|întreabă|întrebăm|întrebați|întreabă","întrebe"),
+V("a răspunde","отвечать","răspuns","răspund|răspunzi|răspunde|răspundem|răspundeți|răspund","răspundă"),
+V("a crede","верить","crezut","cred|crezi|crede|credem|credeți|cred","creadă"),
+V("a gândi","думать","gândit","gândesc|gândești|gândește|gândim|gândiți|gândesc","gândească"),
+V("a simți","чувствовать","simțit","simt|simți|simte|simțim|simțiți|simt","simtă"),
+V("a trăi","жить","trăit","trăiesc|trăiești|trăiește|trăim|trăiți|trăiesc","trăiască"),
+V("a muri","умирать","murit","mor|mori|moare|murim|muriți|mor","moară"),
+V("a aduce","приносить","adus","aduc|aduci|aduce|aducem|aduceți|aduc","aducă"),
+V("a duce","нести","dus","duc|duci|duce|ducem|duceți|duc","ducă"),
+V("a trece","проходить","trecut","trec|treci|trece|trecem|treceți|trec","treacă"),
+V("a rămâne","оставаться","rămas","rămân|rămâi|rămâne|rămânem|rămâneți|rămân","rămână"),
+V("a ajuta","помогать","ajutat","ajut|ajuți|ajută|ajutăm|ajutați|ajută","ajute"),
+V("a chema","звать","chemat","chem|chemi|cheamă|chemăm|chemați|cheamă","cheme"),
+V("a primi","получать","primit","primesc|primești|primește|primim|primiți|primesc","primească"),
+V("a trimite","отправлять","trimis","trimit|trimiți|trimite|trimitem|trimiteți|trimit","trimită"),
+V("a vinde","продавать","vândut","vând|vinzi|vinde|vindem|vindeți|vând","vândă"),
+V("a alege","выбирать","ales","aleg|alegi|alege|alegem|alegeți|aleg","aleagă"),
+V("a cunoaște","быть знакомым","cunoscut","cunosc|cunoști|cunoaște|cunoaștem|cunoașteți|cunosc","cunoască"),
+V("a crește","расти","crescut","cresc|crești|crește|creștem|creșteți|cresc","crească"),
+V("a cădea","падать","căzut","cad|cazi|cade|cădem|cădeți|cad","cadă"),
+V("a auzi","слышать","auzit","aud|auzi|aude|auzim|auziți|aud","audă"),
+V("a privi","смотреть","privit","privesc|privești|privește|privim|priviți|privesc","privească"),
+V("a încerca","пытаться","încercat","încerc|încerci|încearcă|încercăm|încercați|încearcă","încerce"),
+V("a schimba","менять","schimbat","schimb|schimbi|schimbă|schimbăm|schimbați|schimbă","schimbe"),
+V("a folosi","использовать","folosit","folosesc|folosești|folosește|folosim|folosiți|folosesc","folosească"),
+V("a arăta","показывать","arătat","arăt|arăți|arată|arătăm|arătați|arată","arate"),
+V("a lăsa","оставлять","lăsat","las|lași|lasă|lăsăm|lăsați|lasă","lase"),
+V("a ridica","поднимать","ridicat","ridic|ridici|ridică|ridicăm|ridicați|ridică","ridice"),
+V("a coborî","спускаться","coborât","cobor|cobori|coboară|coborâm|coborâți|coboară","coboare"),
+V("a urca","подниматься","urcat","urc|urci|urcă|urcăm|urcați|urcă","urce"),
+V("a dori","желать","dorit","doresc|dorești|dorește|dorim|doriți|doresc","dorească"),
+V("a mulțumi","благодарить","mulțumit","mulțumesc|mulțumești|mulțumește|mulțumim|mulțumiți|mulțumesc","mulțumească"),
+V("a întâlni","встречать","întâlnit","întâlnesc|întâlnești|întâlnește|întâlnim|întâlniți|întâlnesc","întâlnească"),
+V("a călători","путешествовать","călătorit","călătoresc|călătorești|călătorește|călătorim|călătoriți|călătoresc","călătorească"),
+V("a munci","трудиться","muncit","muncesc|muncești|muncește|muncim|munciți|muncesc","muncească"),
+V("a sări","прыгать","sărit","sar|sari|sare|sărim|săriți|sar","sară"),
+V("a visa","мечтать","visat","visez|visezi|visează|visăm|visați|visează","viseze"),
+V("a spera","надеяться","sperat","sper|speri|speră|sperăm|sperați|speră","spere"),
+V("a opri","останавливать","oprit","opresc|oprești|oprește|oprim|opriți|opresc","oprească"),
+V("a câștiga","зарабатывать","câștigat","câștig|câștigi|câștigă|câștigăm|câștigați|câștigă","câștige"),
+V("a pregăti","готовить","pregătit","pregătesc|pregătești|pregătește|pregătim|pregătiți|pregătesc","pregătească")
+];
+/* ====== ДАННЫЕ: СЛОВА [ro,ru,уровень,n/a,род] ====== */
+const WORDS=[
+["casă","дом","A1","n","f"],["om","человек","A1","n","m"],["apă","вода","A1","n","f"],["pâine","хлеб","A1","n","f"],
+["copil","ребёнок","A1","n","m"],["mamă","мама","A1","n","f"],["tată","папа","A1","n","m"],["frate","брат","A1","n","m"],
+["soră","сестра","A1","n","f"],["prieten","друг","A1","n","m"],["carte","книга","A1","n","f"],["masă","стол","A1","n","f"],
+["ușă","дверь","A1","n","f"],["zi","день","A1","n","f"],["noapte","ночь","A1","n","f"],["an","год","A1","n","m"],
+["oraș","город","A1","n","n"],["țară","страна","A1","n","f"],["nume","имя","A1","n","n"],["mână","рука","A1","n","f"],
+["ochi","глаз","A1","n","m"],["cafea","кофе","A1","n","f"],["lapte","молоко","A1","n","n"],["măr","яблоко","A1","n","n"],
+["câine","собака","A1","n","m"],["pisică","кошка","A1","n","f"],["floare","цветок","A1","n","f"],["bani","деньги","A1","n","m"],
+["bun","хороший","A1","a",""],["rău","плохой","A1","a",""],["mare","большой","A1","a",""],["mic","маленький","A1","a",""],
+["nou","новый","A1","a",""],["frumos","красивый","A1","a",""],["cald","тёплый","A1","a",""],["rece","холодный","A1","a",""],
+["roșu","красный","A1","a",""],["alb","белый","A1","a",""],["negru","чёрный","A1","a",""],["albastru","синий","A1","a",""],
+["scaun","стул","A2","n","n"],["fereastră","окно","A2","n","f"],["stradă","улица","A2","n","f"],["magazin","магазин","A2","n","n"],
+["piață","рынок","A2","n","f"],["bilet","билет","A2","n","n"],["tren","поезд","A2","n","n"],["mașină","машина","A2","n","f"],
+["timp","время","A2","n","n"],["vreme","погода","A2","n","f"],["soare","солнце","A2","n","n"],["ploaie","дождь","A2","n","f"],
+["muncă","работа","A2","n","f"],["școală","школа","A2","n","f"],["medic","врач","A2","n","m"],["preț","цена","A2","n","n"],
+["drum","дорога","A2","n","n"],["pod","мост","A2","n","n"],["munte","гора","A2","n","m"],["râu","река","A2","n","n"],
+["haine","одежда","A2","n","f"],["mâncare","еда","A2","n","f"],["cer","небо","A2","n","n"],["lume","мир / люди","A2","n","f"],
+["greu","трудный","A2","a",""],["ușor","лёгкий","A2","a",""],["scump","дорогой","A2","a",""],["ieftin","дешёвый","A2","a",""],
+["lung","длинный","A2","a",""],["scurt","короткий","A2","a",""],["înalt","высокий","A2","a",""],["bătrân","старый (о людях)","A2","a",""],
+["tânăr","молодой","A2","a",""],["puternic","сильный","A2","a",""],["slab","слабый / худой","A2","a",""],["rapid","быстрый","A2","a",""],
+["fericit","счастливый","B1","a",""],["trist","грустный","B1","a",""],["obosit","уставший","B1","a",""],["important","важный","B1","a",""],
+["periculos","опасный","B1","a",""],["liniștit","спокойный","B1","a",""],["curajos","смелый","B1","a",""],["leneș","ленивый","B1","a",""],
+["harnic","трудолюбивый","B1","a",""],["deștept","умный","B1","a",""],["generos","щедрый","B1","a",""],["sincer","искренний","B1","a",""],
+["sănătate","здоровье","B1","n","f"],["dragoste","любовь","B1","n","f"],["putere","сила / власть","B1","n","f"],["adevăr","правда","B1","n","n"],
+["minciună","ложь","B1","n","f"],["pace","мир (покой)","B1","n","f"],["război","война","B1","n","n"],["lege","закон","B1","n","f"],
+["drept","право","B1","n","n"],["popor","народ","B1","n","n"],["istorie","история","B1","n","f"],["viitor","будущее","B1","n","n"],
+["serviciu","служба / работа","B1","n","n"],["salariu","зарплата","B1","n","n"],["experiență","опыт","B1","n","f"],["scop","цель","B1","n","n"],
+["mediu","среда","B2","n","n"],["societate","общество","B2","n","f"],["guvern","правительство","B2","n","n"],["cetățean","гражданин","B2","n","m"],
+["economie","экономика","B2","n","f"],["impozit","налог","B2","n","n"],["cercetare","исследование","B2","n","f"],["dezvoltare","развитие","B2","n","f"],
+["responsabilitate","ответственность","B2","n","f"],["libertate","свобода","B2","n","f"],["egalitate","равенство","B2","n","f"],["decizie","решение","B2","n","f"],
+["consecință","последствие","B2","n","f"],["avantaj","преимущество","B2","n","n"],["dezavantaj","недостаток","B2","n","n"],["influență","влияние","B2","n","f"],
+["uimitor","удивительный","B2","a",""],["evident","очевидный","B2","a",""],["complicat","сложный","B2","a",""],["necesar","необходимый","B2","a",""],
+["disponibil","доступный","B2","a",""],["responsabil","ответственный","B2","a",""],["sustenabil","устойчивый","B2","a",""],["eficient","эффективный","B2","a",""],
+["suveranitate","суверенитет","C1","n","f"],["constituție","конституция","C1","n","f"],["jurământ","присяга","C1","n","n"],["credință","верность / вера","C1","n","f"],
+["demnitate","достоинство","C1","n","f"],["justiție","правосудие","C1","n","f"],["patrimoniu","наследие","C1","n","n"],["prevedere","положение","C1","n","f"],
+["desăvârșit","совершенный","C1","a",""],["temeinic","основательный","C1","a",""],["inevitabil","неизбежный","C1","a",""],["amănunt","деталь","C1","n","n"],
+["ambiguu","двусмысленный","C2","a",""],["perfid","коварный","C2","a",""],["sublim","возвышенный","C2","a",""],["efemer","эфемерный","C2","a",""],
+["năzuință","стремление","C2","n","f"],["tărâm","край, земля","C2","n","n"],["văzduh","небеса / воздух","C2","n","n"],["obârșie","происхождение","C2","n","f"]
+].map(a=>({ro:a[0],ru:a[1],lvl:a[2],pos:a[3]||'',g:a[4]||''}));
+/* ====== ДАННЫЕ: ПРЕДЛОЖЕНИЯ [уровень, румынский, перевод] ====== */
+const SENTENCES=[
+["A1","Eu sunt din Moldova.","Я из Молдовы."],
+["A1","Mă numesc Andrei.","Меня зовут Андрей."],
+["A1","Ea are o pisică neagră.","У неё есть чёрная кошка."],
+["A1","Noi mâncăm pâine și brânză.","Мы едим хлеб и сыр."],
+["A1","Copilul citește o carte.","Ребёнок читает книгу."],
+["A1","Casa mea este mare.","Мой дом большой."],
+["A2","Ieri am fost la magazin.","Вчера я был в магазине."],
+["A2","Mâine voi merge la școală.","Завтра я пойду в школу."],
+["A2","Trebuie să cumpăr un bilet.","Мне нужно купить билет."],
+["A2","Îmi place să beau cafea dimineața.","Мне нравится пить кофе по утрам."],
+["A2","Trenul pleacă la ora opt.","Поезд отходит в восемь часов."],
+["A2","Astăzi vremea este foarte frumoasă.","Сегодня погода очень хорошая."],
+["B1","Cred că este o idee bună.","Я думаю, это хорошая идея."],
+["B1","Deși era obosit, a continuat să lucreze.","Хотя он устал, он продолжал работать."],
+["B1","Dacă aș avea timp, aș călători mai mult.","Если бы было время, я бы больше путешествовал."],
+["B1","Vreau să învăț limba română bine.","Я хочу хорошо выучить румынский язык."],
+["B1","Mergând pe stradă, am întâlnit un prieten.","Идя по улице, я встретил друга."],
+["B2","Dacă aș fi știut, aș fi venit mai devreme.","Если бы я знал, я бы пришёл раньше."],
+["B2","Este important să protejăm mediul.","Важно защищать окружающую среду."],
+["B2","Pe de o parte e scump, pe de altă parte e bun.","С одной стороны дорого, с другой — хорошо."],
+["B2","Având în vedere situația, trebuie să decidem.","Учитывая ситуацию, мы должны решить."],
+["C1","Fiecare cetățean are dreptul la o viață demnă.","Каждый гражданин имеет право на достойную жизнь."],
+["C1","Cu cât citești mai mult, cu atât înțelegi mai bine.","Чем больше читаешь, тем лучше понимаешь."],
+["C1","Nu numai că a promis, ci și a respectat cuvântul.","Он не только обещал, но и сдержал слово."]
+].map(a=>({lvl:a[0],ro:a[1],ru:a[2]}));
+/* ====== ДАННЫЕ: ТЕКСТЫ ====== */
+const TEXTS=[
+{lvl:"A1",title:"O zi obișnuită",body:["Bună! Mă numesc Maria. Eu locuiesc în Chișinău.","Dimineața beau o cafea și mănânc pâine cu brânză.","Apoi merg la muncă cu autobuzul. Lucrez într-un magazin.","Seara citesc o carte sau vorbesc cu prietenii. Noaptea dorm bine."]},
+{lvl:"A2",title:"Planuri de weekend",body:["Săptămâna aceasta am muncit mult, dar weekendul va fi liber.","Sâmbătă vreau să merg la piață și să cumpăr fructe și legume.","Dacă vremea este frumoasă, voi face o plimbare în parc.","Duminică o să mă odihnesc acasă și o să gătesc o supă bună."]},
+{lvl:"B1",title:"Învățarea unei limbi",body:["A învăța o limbă străină nu este ușor, dar este foarte util.","Cred că secretul este să exersezi puțin în fiecare zi.","Deși la început greșim mult, cu timpul devenim mai siguri.","Important este să nu renunțăm, fiindcă rezultatele apar încet, dar sigur."]},
+{lvl:"B2",title:"Tehnologia și viața noastră",body:["Tehnologia a schimbat profund modul în care trăim și comunicăm.","Pe de o parte, ne oferă acces rapid la informație și ne ușurează munca.","Pe de altă parte, dependența de ecrane poate afecta sănătatea și relațiile.","Având în vedere aceste aspecte, este necesar să găsim un echilibru rezonabil."]},
+{lvl:"C1",title:"Constituția României (Art. 1)",body:["România este stat național, suveran și independent, unitar și indivizibil.","Forma de guvernământ a statului român este republica.","România este stat de drept, democratic și social, în care demnitatea omului,","drepturile și libertățile cetățenilor reprezintă valori supreme și sunt garantate."]},
+{lvl:"C2",title:"Jurământul de credință",body:["Jur să fiu devotat patriei și poporului român,","să apăr drepturile și interesele naționale,","să respect Constituția și legile României."]}
+];
+/* ====== ДАННЫЕ: АДАПТИВНЫЙ ТЕСТ (correct = индекс 0) ====== */
+const QUIZ=[
+{lvl:"A1",q:"«Спасибо» —",o:["mulțumesc","la revedere","te rog"],a:0},
+{lvl:"A1",q:"Неопределённый артикль муж. рода:",o:["un","o","niște"],a:0},
+{lvl:"A1",q:"eu ___ student. (a fi)",o:["sunt","ești","este"],a:0},
+{lvl:"A1",q:"Множ. число «carte»:",o:["cărți","carte","cărțe"],a:0},
+{lvl:"A2",q:"Ieri eu ___ acasă. (a mânca)",o:["am mâncat","mănânc","voi mânca"],a:0},
+{lvl:"A2",q:"Множ. «scaun»:",o:["scaune","scaunuri","scauni"],a:0},
+{lvl:"A2",q:"«Îmi place ___» (cafea, с артиклем)",o:["cafeaua","cafea","cafele"],a:0},
+{lvl:"A2",q:"«Trebuie ___ plec»",o:["să","a","de"],a:0},
+{lvl:"B1",q:"«Dacă aș avea timp, ___ veni»",o:["aș","am","voi"],a:0},
+{lvl:"B1",q:"Деепричастие от «a merge»:",o:["mergând","mergind","mers"],a:0},
+{lvl:"B1",q:"Конъюнктив 3 л. «a face»:",o:["să facă","să face","să făcă"],a:0},
+{lvl:"B1",q:"«Deși plouă, ___ ieșim»",o:["totuși","fiindcă","ca să"],a:0},
+{lvl:"B2",q:"«Dacă aș fi știut, ___ venit»",o:["aș fi","am","aș"],a:0},
+{lvl:"B2",q:"Супин: «E greu ___ spus»",o:["de","a","să"],a:0},
+{lvl:"B2",q:"Пассив: «Cartea ___ scrisă»",o:["a fost","au fost","a fi"],a:0},
+{lvl:"B2",q:"Конъюнктив перфект: «să ___ plecat»",o:["fi","fie","fii"],a:0},
+{lvl:"C1",q:"Perfect simplu «a spune» (el):",o:["spuse","a spus","spunu"],a:0},
+{lvl:"C1",q:"Книжный синоним к «a zice»:",o:["a afirma","a striga","a tăcea"],a:0},
+{lvl:"C1",q:"«Nu numai că vine, ___ și ajută»",o:["ci","dar","sau"],a:0},
+{lvl:"C1",q:"«Cu cât citești mult, ___ atât înțelegi»",o:["cu","la","de"],a:0},
+{lvl:"C2",q:"Пословица: «Graba strică ___»",o:["treaba","casa","vremea"],a:0},
+{lvl:"C2",q:"«A face din țânțar ___»",o:["armăsar","cal","munte"],a:0},
+{lvl:"C2",q:"«Apa trece, ___ rămân»",o:["pietrele","casele","anii"],a:0},
+{lvl:"C2",q:"Эвфемизм для «a muri»:",o:["a se stinge","a alerga","a dormi"],a:0}
+];
+/* ====== ДАННЫЕ: СОБЕСЕДОВАНИЕ С КОНСУЛОМ ====== */
+const CIVICS=[
+{q:"Care este capitala României?",ru:"Столица Румынии?",a:"Capitala României este București.",h:"Бухарест."},
+{q:"Care este ziua națională a României?",ru:"Национальный праздник?",a:"Ziua națională este 1 Decembrie — Marea Unire din 1918.",h:"1 декабря (1918)."},
+{q:"Ce culori are drapelul României?",ru:"Цвета флага?",a:"Drapelul are trei culori: albastru, galben și roșu.",h:"Синий, жёлтый, красный."},
+{q:"Care este moneda națională?",ru:"Валюта?",a:"Moneda națională este leul (RON).",h:"Лей."},
+{q:"Care este limba oficială?",ru:"Официальный язык?",a:"Limba oficială este limba română.",h:"Румынский."},
+{q:"În ce an a aderat România la UE?",ru:"Вступление в ЕС?",a:"România a aderat la Uniunea Europeană în 2007.",h:"2007."},
+{q:"În ce an a aderat România la NATO?",ru:"Вступление в НАТО?",a:"România a aderat la NATO în 2004.",h:"2004."},
+{q:"Care este forma de guvernământ?",ru:"Форма правления?",a:"România este o republică semiprezidențială.",h:"Полупрезидентская республика."},
+{q:"Care este cel mai mare fluviu?",ru:"Самая большая река?",a:"Cel mai mare fluviu este Dunărea.",h:"Дунай."},
+{q:"Cum se numesc munții principali?",ru:"Главные горы?",a:"Munții principali sunt Munții Carpați.",h:"Карпаты."},
+{q:"Cine a înfăptuit Mica Unire din 1859?",ru:"Малое объединение 1859?",a:"A fost înfăptuită sub domnia lui Alexandru Ioan Cuza.",h:"Куза (Молдова+Валахия)."},
+{q:"Cine a unit Țările Române în 1600?",ru:"Объединение 1600?",a:"Mihai Viteazul a unit cele trei țări române.",h:"Михай Храбрый."},
+{q:"Care sunt cele trei provincii istorice?",ru:"Три провинции?",a:"Țara Românească, Moldova și Transilvania.",h:"Валахия, Молдова, Трансильвания."},
+{q:"Când a fost adoptată Constituția actuală?",ru:"Конституция?",a:"A fost adoptată în 1991 și revizuită în 2003.",h:"1991 (рев. 2003)."},
+{q:"Cine este poetul național al românilor?",ru:"Национальный поэт?",a:"Mihai Eminescu este poetul național.",h:"Эминеску."},
+{q:"Cine a scris versurile imnului?",ru:"Слова гимна?",a:"Versurile au fost scrise de Andrei Mureșanu.",h:"Мурешану."},
+{q:"Câte județe are România?",ru:"Сколько уездов?",a:"România are 41 de județe și municipiul București.",h:"41 + Бухарест."},
+{q:"Cine a fost Ștefan cel Mare?",ru:"Кто Штефан чел Маре?",a:"A fost un mare domnitor al Moldovei.",h:"Господарь Молдовы."},
+{q:"De ce doriți cetățenia română?",ru:"(Каверзный) Почему гражданство?",a:"Răspuns sincer: legături istorice și familiale, dorința de a aparține spațiului european.",h:"Искренне: корни, семья, Европа."},
+{q:"Spuneți ceva despre dumneavoastră.",ru:"(Каверзный) Расскажите о себе.",a:"Mă numesc..., sunt din..., locuiesc în... și învăț română în fiecare zi.",h:"Не молчи — 4 фразы о себе."}
+];
+/* ====== ГЛОССАРИЙ ====== */
+const GLOSS={};
+WORDS.forEach(w=>GLOSS[w.ro.toLowerCase()]=w.ru);
+VERBS.forEach(v=>{GLOSS[v.inf.replace(/^a /,'').toLowerCase()]=v.tr;});
+Object.assign(GLOSS,{
+"și":"и","sau":"или","dar":"но","în":"в","la":"у / в / к","cu":"с","de":"от / из","din":"из","pe":"на","sub":"под",
+"un":"один (арт.)","o":"одна (арт.)","niște":"некоторые","eu":"я","tu":"ты","el":"он","ea":"она","noi":"мы","voi":"вы",
+"ei":"они","ele":"они (ж.)","mă":"меня / себя","te":"тебя","se":"себя","ne":"нас","îmi":"мне","îți":"тебе","îi":"ему/ей",
+"este":"есть (быть)","sunt":"есть","am":"имею / (вспом.)","ai":"имеешь","are":"имеет","avem":"имеем","au":"имеют",
+"să":"чтобы (част.)","nu":"не / нет","da":"да","mai":"ещё / более","foarte":"очень","bine":"хорошо","aici":"здесь","acolo":"там",
+"azi":"сегодня","astăzi":"сегодня","ieri":"вчера","mâine":"завтра","acum":"сейчас","apoi":"затем",
+"dimineața":"утром","seara":"вечером","noaptea":"ночью","brânză":"сыр","autobuzul":"автобус",
+"prietenii":"друзья","liber":"свободный","plimbare":"прогулка","parc":"парк","fructe":"фрукты","legume":"овощи","supă":"суп",
+"limbă":"язык","străină":"иностранная","util":"полезный","secretul":"секрет","fiecare":"каждый","greșim":"ошибаемся",
+"timpul":"время","siguri":"уверенные","rezultatele":"результаты","încet":"медленно","sigur":"конечно",
+"tehnologia":"технология","modul":"способ","trăim":"живём","informație":"информация","sănătatea":"здоровье","relațiile":"отношения",
+"echilibru":"баланс","rezonabil":"разумный","stat":"государство","național":"национальный","suveran":"суверенный","independent":"независимый",
+"unitar":"единый","indivizibil":"неделимый","forma":"форма","guvernământ":"правление","republica":"республика",
+"democratic":"демократический","social":"социальный","demnitatea":"достоинство","omului":"человека","drepturile":"права","libertățile":"свободы",
+"cetățenilor":"граждан","valori":"ценности","supreme":"высшие","garantate":"гарантированы","jur":"клянусь","devotat":"преданный",
+"patriei":"родине","poporului":"народу","român":"румынский","apăr":"защищаю","interesele":"интересы","naționale":"национальные",
+"respect":"уважаю / соблюдаю","constituția":"конституцию","legile":"законы","româniei":"Румынии","weekendul":"выходные","aceasta":"эта",
+"plec":"я ухожу","gătesc":"готовлю","odihnesc":"отдыхаю","vremea":"погода","frumoasă":"красивая","exersezi":"тренируешься",
+"renunțăm":"сдаёмся","fiindcă":"потому что","deși":"хотя","schimbat":"изменил","profund":"глубоко","oferă":"даёт","acces":"доступ",
+"rapid":"быстро","ușurează":"облегчает","dependența":"зависимость","ecrane":"экраны","afecta":"повлиять","aspecte":"аспекты","necesar":"необходимо",
+"continuat":"продолжал","idee":"идея","situația":"ситуация","comunicăm":"общаемся","devenim":"становимся","început":"начало","mult":"много","puțin":"мало"
+});
+function lookup(w){return GLOSS[w.toLowerCase()]||null;}
+/* ====== STATE / LocalStorage ====== */
+const KEY="vorbeste_ro_state_v1";
+let mem=null, canStore=true;
+try{localStorage.setItem("_t","1");localStorage.removeItem("_t");}catch(e){canStore=false;}
+function fresh(){return{level:null,xp:0,streak:0,lastDay:null,days:{},deck:{},quests:null,stats:{conj:0,sent:0,trans:0,read:0,rev:0},timerMin:50};}
+function load(){ if(mem)return mem;
+  try{const r=localStorage.getItem(KEY);mem=r?JSON.parse(r):fresh();}catch(e){mem=fresh();}
+  const f=fresh(); for(const k in f) if(mem[k]===undefined) mem[k]=f[k];
+  if(!mem.stats)mem.stats=f.stats; if(!mem.deck)mem.deck={}; if(!mem.days)mem.days={}; return mem; }
+let S=load();
+function save(){ if(!canStore)return; try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
+function todayStr(){return new Date().toISOString().slice(0,10);}
+const RANKS=["Boboc","Ucenic","Călător","Vorbitor","Cărturar","Maestru","Erudit","Legendă"];
+function levelInfo(xp){let lvl=1,need=200,acc=0;while(xp>=acc+need){acc+=need;lvl++;need=Math.round(need*1.22);}
+  return{lvl,into:xp-acc,need,title:RANKS[Math.min(RANKS.length-1,Math.floor((lvl-1)/2))]};}
+function addXP(n){S.xp+=n;const t=todayStr();S.days[t]=(S.days[t]||0)+n;
+  if(S.lastDay!==t){if(S.lastDay){const d=(new Date(t)-new Date(S.lastDay))/864e5;S.streak=d===1?S.streak+1:1;}else S.streak=1;S.lastDay=t;}
+  save();paintHeader();}
+/* ====== SM-2 ====== */
+function sm2(card,q){
+  if(q<3){card.reps=0;card.interval=1;card.lapses=(card.lapses||0)+1;}
+  else{ if(card.reps===0)card.interval=1; else if(card.reps===1)card.interval=6; else card.interval=Math.round(card.interval*card.ef); card.reps+=1; }
+  card.ef=card.ef+(0.1-(5-q)*(0.08+(5-q)*0.02)); if(card.ef<1.3)card.ef=1.3;
+  card.due=Date.now()+card.interval*864e5; return card;
+}
+function deckAdd(ro,ru){const k=ro.toLowerCase();if(S.deck[k]){toast("Уже в словаре");return false;}
+  S.deck[k]={ro,ru,ef:2.5,interval:0,reps:0,lapses:0,due:Date.now()};save();return true;}
+function dueCards(){const now=Date.now();return Object.values(S.deck).filter(c=>(c.due||0)<=now);}
+/* ====== АУДИО (Web Speech) ====== */
+let VOICES=[],SPEAK_OK=("speechSynthesis"in window),READ_BUF="";
+function loadVoices(){if(SPEAK_OK)VOICES=speechSynthesis.getVoices();}
+if(SPEAK_OK){loadVoices();speechSynthesis.onvoiceschanged=loadVoices;}
+function speak(text){if(!SPEAK_OK||!text)return;const u=new SpeechSynthesisUtterance(text);u.lang="ro-RO";u.rate=.92;
+  const v=VOICES.find(x=>x.lang&&x.lang.toLowerCase().startsWith("ro"));if(v)u.voice=v;
+  try{speechSynthesis.cancel();speechSynthesis.speak(u);}catch(e){}}
+function speakBuf(){speak(READ_BUF);}
+function beep(){try{const a=new(window.AudioContext||window.webkitAudioContext)();const o=a.createOscillator(),g=a.createGain();
+  o.connect(g);g.connect(a.destination);o.type="sine";o.frequency.value=660;g.gain.setValueAtTime(.0001,a.currentTime);
+  g.gain.exponentialRampToValueAtTime(.2,a.currentTime+.02);g.gain.exponentialRampToValueAtTime(.0001,a.currentTime+.5);
+  o.start();o.stop(a.currentTime+.5);}catch(e){}}
+/* ====== ПРОВЕРКА ВВОДА ====== */
+function norm(s){return s.trim().toLowerCase().replace(/\s+/g," ");}
+function stripD(s){return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[șş]/g,"s").replace(/[țţ]/g,"t").replace(/[ăâ]/g,"a").replace(/î/g,"i");}
+function accepts(ans){let arr=Array.isArray(ans)?ans:String(ans).split("/");let out=[];
+  arr.forEach(a=>{a=a.trim();out.push(a);if(/^a\s/i.test(a))out.push(a.replace(/^a\s/i,""));});return out;}
+function checkText(inp,ans){const L=accepts(ans).map(norm),i=norm(inp);
+  if(L.includes(i))return"ok";if(L.map(stripD).includes(stripD(i)))return"almost";return"no";}
+/* ====== UTILS ====== */
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;}
+function rnd(a){return a[Math.random()*a.length|0];}
+const LV=["A1","A2","B1","B2","C1","C2"];const lvI=l=>LV.indexOf(l);
+function userMaxI(){return S.level?lvI(S.level):0;}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+/* ====== ГЕНЕРАТОР ФОРМ ====== */
+const PRON=["eu","tu","el/ea","noi","voi","ei/ele"];
+const AUX_PC=["am","ai","a","am","ați","au"];
+const AUX_V=["voi","vei","va","vom","veți","vor"];
+const TENSES=["Prezent","Perfect compus","Conjunctiv","Viitor"];
+function conjugate(v,tense,p){
+  if(tense==="Prezent")return v.pr[p];
+  if(tense==="Perfect compus")return AUX_PC[p]+" "+v.part;
+  if(tense==="Viitor")return AUX_V[p]+" "+v.inf.replace(/^a /,"");
+  if(tense==="Conjunctiv"){let f=v.cf?v.cf[p]:((p===2||p===5)?v.c3:v.pr[p]);return "să "+f;}
+}
+/* ====== HEADER / NAV / ROUTER ====== */
+function paintHeader(){const li=levelInfo(S.xp);
+  document.getElementById("hStreak").textContent=S.streak;
+  document.getElementById("hXp").textContent=S.xp;
+  document.getElementById("xpFill").style.width=Math.round(li.into/li.need*100)+"%";
+  document.getElementById("lvlPill").textContent=S.level||"—";}
+let VIEW="home";
+const app=document.getElementById("app");
+document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  VIEW=b.dataset.v;[...document.querySelectorAll("#nav button")].forEach(x=>x.classList.toggle("on",x===b));render();window.scrollTo(0,0);});
+function render(){paintHeader();({home:renderHome,practice:renderPractice,deck:renderDeck,read:renderRead,oath:renderOath}[VIEW]||renderHome)();}
+function go(v){VIEW=v;[...document.querySelectorAll("#nav button")].forEach(x=>x.classList.toggle("on",x.dataset.v===v));render();window.scrollTo(0,0);}
+/* ====== МОДАЛКА / ТОСТ ====== */
+function openModal(html){document.getElementById("modalBox").innerHTML=html;document.getElementById("modal").classList.add("on");}
+function closeModal(){document.getElementById("modal").classList.remove("on");}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal();});
+let toastT;function toast(m){const el=document.getElementById("toast");el.textContent=m;el.classList.add("on");clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove("on"),2200);}
+/* ====== КВЕСТЫ ====== */
+function genQuests(){return{date:todayStr(),items:[
+  {id:"rev",t:"Повторить 12 слов (Anki)",icon:"🔁",goal:12,prog:0,xp:35,done:false},
+  {id:"conj",t:"Спрячь 8 глаголов",icon:"🔀",goal:8,prog:0,xp:30,done:false},
+  {id:"sent",t:"Собери 4 предложения",icon:"🧩",goal:4,prog:0,xp:25,done:false},
+  {id:"read",t:"Прочитай 1 текст вслух",icon:"📖",goal:1,prog:0,xp:20,done:false},
+  {id:"timer",t:"Учись 50 минут (таймер)",icon:"⏱️",goal:1,prog:0,xp:40,done:false}
+]};}
+function ensureQuests(){if(!S.quests||S.quests.date!==todayStr()){S.quests=genQuests();save();}}
+function quest(id,n){n=n||1;ensureQuests();const q=S.quests.items.find(x=>x.id===id);if(!q||q.done)return;
+  q.prog=Math.min(q.goal,q.prog+n);if(q.prog>=q.goal){q.done=true;addXP(q.xp);toast("✅ Квест: +"+q.xp+" XP");}
+  save();if(VIEW==="home")renderHome();}
+/* ====== input helpers ====== */
+function diaBtns(id){return ["ă","â","î","ș","ț"].map(c=>'<button onclick="insChar(\''+id+'\',\''+c+'\')">'+c+'</button>').join("");}
+function insChar(id,c){const el=document.getElementById(id);if(!el||el.disabled)return;const p=el.selectionStart==null?el.value.length:el.selectionStart;
+  el.value=el.value.slice(0,p)+c+el.value.slice(el.selectionEnd==null?p:el.selectionEnd);el.focus();el.selectionStart=el.selectionEnd=p+1;}
+function spk(t){return '<button class="spk" onclick="speak(\''+esc(t).replace(/'/g,"\\'")+'\')" aria-label="Произнести">🔊</button>';}
+/* ====== VIEW: HOME ====== */
+let timer={left:0,id:null,running:false};
+function fmt(s){s=Math.max(0,s|0);const m=(s/60|0),x=s%60;return (m<10?"0":"")+m+":"+(x<10?"0":"")+x;}
+function renderHome(){
+  ensureQuests();
+  const li=levelInfo(S.xp),due=dueCards().length,todayXP=S.days[todayStr()]||0;
+  let h="";
+  if(!S.level){
+    h+='<div class="card glow"><div class="corner"></div><div class="eyebrow">Старт</div>'+
+    '<h2 style="font-size:24px;margin:6px 0">Определим твой уровень</h2>'+
+    '<p class="sub">Пройди адаптивный тест из 20 вопросов — приложение настроит контент и квесты под тебя.</p>'+
+    '<button class="btn mg block" style="margin-top:14px" onclick="startTest()">▶ Пройти тест уровня</button>'+
+    '<button class="btn ghost block sm" style="margin-top:8px" onclick="S.level=\'A1\';save();render()">Пропустить (начать с A1)</button></div>';
+  }
+  h+='<div class="card"><div class="row between"><div><div class="eyebrow">Профиль · '+esc(li.title)+'</div>'+
+   '<h2 style="font-size:26px;margin-top:4px">Уровень '+li.lvl+' <span class="neon-mg" style="font-size:16px">'+(S.level||"")+'</span></h2></div>'+
+   '<div style="text-align:right"><div class="mono" style="font-size:13px;color:var(--tx3)">'+li.into+' / '+li.need+' XP</div></div></div>'+
+   '<div class="xpbar" style="margin-top:12px;border-radius:9px"><i style="width:'+Math.round(li.into/li.need*100)+'%"></i></div></div>';
+  h+='<div class="grid g3"><div class="stat"><div class="n neon">🔥'+S.streak+'</div><div class="l">дней подряд</div></div>'+
+   '<div class="stat"><div class="n" style="color:var(--gd)">'+todayXP+'</div><div class="l">XP сегодня</div></div>'+
+   '<div class="stat"><div class="n neon-mg">'+due+'</div><div class="l">к повтору</div></div></div>';
+  const tdisp=(timer.running||timer.left)?fmt(timer.left):fmt(S.timerMin*60);
+  h+='<div class="card glow"><div class="eyebrow">Сессия фокуса</div>'+
+   '<div class="timer-d '+(timer.running?"run":"")+'" id="timerD" style="margin:10px 0">'+tdisp+'</div>'+
+   '<div class="row" style="justify-content:center"><button class="btn '+(timer.running?"gd":"")+' sm" onclick="toggleTimer()">'+(timer.running?"⏸ Пауза":"▶ Старт")+'</button>'+
+   '<button class="btn ghost sm" onclick="resetTimer()">↺ Сброс</button>'+
+   '<button class="btn ghost sm" onclick="setTimerMin()">⏲ '+S.timerMin+' мин</button></div>'+
+   '<p class="sub" style="text-align:center;margin-top:10px">Закончишь сессию — +40 XP и квест.</p></div>';
+  h+='<div class="card"><div class="row between"><div class="eyebrow">Ежедневные квесты</div><span class="tag">обновятся завтра</span></div><div style="margin-top:8px">';
+  S.quests.items.forEach(q=>{h+='<div class="quest '+(q.done?"done":"")+'"><div class="qi">'+q.icon+'</div><div class="qm"><div class="qt">'+q.t+'</div>'+
+   '<div class="qbar"><i style="width:'+Math.round(q.prog/q.goal*100)+'%"></i></div></div><div class="qx">'+(q.done?"✓":"+"+q.xp)+'</div></div>';});
+  h+='</div></div>';
+  h+='<div class="grid g2"><button class="btn block" onclick="go(\'practice\')">🎯 Практика</button>'+
+   '<button class="btn mg block" onclick="go(\'deck\')">🧠 Повторить ('+due+')</button>'+
+   '<button class="btn pp block" onclick="go(\'read\')">📖 Чтение</button>'+
+   '<button class="btn gd block" onclick="go(\'oath\')">🛡️ Присяга</button></div>';
+  app.innerHTML=h;
+}
+function tick(){timer.left--;const d=document.getElementById("timerD");if(d)d.textContent=fmt(timer.left);
+  if(timer.left<=0){clearInterval(timer.id);timer.running=false;beep();addXP(40);quest("timer",1);toast("⏱️ Сессия завершена! +40 XP");if(VIEW==="home")renderHome();}}
+function toggleTimer(){if(timer.running){clearInterval(timer.id);timer.running=false;}
+  else{if(timer.left<=0)timer.left=S.timerMin*60;timer.running=true;timer.id=setInterval(tick,1000);}renderHome();}
+function resetTimer(){clearInterval(timer.id);timer.running=false;timer.left=0;renderHome();}
+function setTimerMin(){const v=prompt("Длительность сессии (минут):",S.timerMin);const n=parseInt(v);if(n>0&&n<=180){S.timerMin=n;save();resetTimer();}}
+/* ====== VIEW: PRACTICE ====== */
+let pTab="conj";
+function renderPractice(){
+  app.innerHTML='<h2 style="margin-bottom:4px">Практика</h2><p class="sub" style="margin-bottom:12px">Задания генерируются случайно — повторений хватит на месяцы.</p>'+
+   '<div class="seg"><button class="'+(pTab==="conj"?"on":"")+'" onclick="pSet(\'conj\')">Спряжение</button>'+
+   '<button class="'+(pTab==="sent"?"on":"")+'" onclick="pSet(\'sent\')">Предложения</button>'+
+   '<button class="'+(pTab==="trans"?"on":"")+'" onclick="pSet(\'trans\')">Перевод</button></div><div id="pBody"></div>';
+  if(pTab==="conj")newConj();else if(pTab==="sent")newSent();else newTrans();
+}
+function pSet(t){pTab=t;renderPractice();}
+/* спряжение */
+function newConj(){
+  const v=rnd(VERBS),tense=rnd(TENSES),p=Math.random()*6|0,answer=conjugate(v,tense,p);
+  document.getElementById("pBody").innerHTML='<div class="card glow"><div class="corner"></div>'+
+   '<div class="q-tag">'+tense+' · '+PRON[p]+'</div><div class="q-prompt"><span class="accent">'+esc(v.inf)+'</span></div>'+
+   '<div class="sub" style="text-align:center;margin-top:-4px">'+esc(v.tr)+'</div>'+
+   '<div class="row" style="justify-content:center;margin:10px 0 4px">'+spk(v.inf)+'</div>'+
+   '<div style="font-weight:700;text-align:center;font-size:18px;margin:6px 0">'+PRON[p]+' …</div>'+
+   '<input class="tin ro" id="cIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="введи форму">'+
+   '<div class="dia">'+diaBtns("cIn")+'</div><button class="btn block" style="margin-top:12px" id="cChk">Проверить</button><div id="cFb"></div></div>';
+  const inp=document.getElementById("cIn");inp.focus();
+  const submit=function(){const r=checkText(inp.value,answer);inp.classList.add(r==="no"?"no":"ok");inp.disabled=true;
+    document.getElementById("cChk").classList.add("hidden");const ok=r!=="no";if(r==="ok")addXP(6);else if(r==="almost")addXP(3);
+    S.stats.conj++;quest("conj",1);save();speak(answer);
+    document.getElementById("cFb").innerHTML='<div class="fb '+(ok?"ok":"no")+'">'+(ok?(r==="almost"?"Почти! Проверь диакритику.":"Верно! 🎉"):"Ответ:")+' <span class="ans">'+esc(answer)+'</span><small>'+esc(v.inf)+' · '+tense+' · '+PRON[p]+'</small></div>'+
+     '<button class="btn mg block" style="margin-top:10px" onclick="newConj()">Следующий →</button>';};
+  document.getElementById("cChk").onclick=submit;
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!inp.disabled)submit();});
+}
+/* конструктор предложений */
+let sentState=null;
+function newSent(){
+  const opts=SENTENCES.filter(s=>lvI(s.lvl)<=Math.max(1,userMaxI()));const pool=opts.length?opts:SENTENCES;
+  const s=rnd(pool),words=s.ro.replace(/\.$/,"").split(" ");
+  sentState={correct:s.ro.replace(/\.$/,""),tr:s.ru,pool:shuffle(words.map(w=>({w:w}))),ans:[]};
+  drawSent();
+}
+function drawSent(){
+  const st=sentState;
+  document.getElementById("pBody").innerHTML='<div class="card glow"><div class="q-tag">Собери предложение</div>'+
+   '<div class="q-prompt" style="font-size:20px;color:var(--tx)">'+esc(st.tr)+'</div>'+
+   '<div class="ans-area" id="ansArea"></div><div class="chips" id="poolArea"></div>'+
+   '<button class="btn block" style="margin-top:14px" id="sChk">Проверить</button><div id="sFb"></div></div>';
+  const ansA=document.getElementById("ansArea"),poolA=document.getElementById("poolArea");
+  st.ans.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t.w;
+    b.onclick=()=>{st.ans=st.ans.filter(x=>x!==t);st.pool.push(t);drawSent();};ansA.appendChild(b);});
+  st.pool.forEach(t=>{const b=document.createElement("button");b.className="chip";b.textContent=t.w;
+    b.onclick=()=>{st.pool=st.pool.filter(x=>x!==t);st.ans.push(t);drawSent();};poolA.appendChild(b);});
+  document.getElementById("sChk").onclick=checkSent;
+}
+function checkSent(){
+  const st=sentState,made=st.ans.map(t=>t.w).join(" ");
+  const ok=norm(made)===norm(st.correct)||stripD(norm(made))===stripD(norm(st.correct));
+  if(ok){addXP(8);S.stats.sent++;quest("sent",1);save();speak(st.correct);}
+  document.getElementById("sFb").innerHTML='<div class="fb '+(ok?"ok":"no")+'">'+(ok?"Верно! 🎉":"Правильный порядок:")+' <span class="ans">'+esc(st.correct)+'.</span></div>'+
+   '<div class="row" style="margin-top:10px">'+spk(st.correct)+'<button class="btn mg block" onclick="newSent()">Следующее →</button></div>';
+}
+/* перевод */
+function newTrans(){
+  const pool=WORDS.map(w=>({ro:w.ro,ru:w.ru})).concat(VERBS.map(v=>({ro:v.inf,ru:v.tr})));
+  const item=rnd(pool);
+  document.getElementById("pBody").innerHTML='<div class="card glow"><div class="q-tag">Перевод на румынский</div>'+
+   '<div class="q-prompt" style="color:var(--tx)">'+esc(item.ru)+'</div>'+
+   '<input class="tin ro" id="tIn" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="по-румынски…">'+
+   '<div class="dia">'+diaBtns("tIn")+'</div><button class="btn block" style="margin-top:12px" id="tChk">Проверить</button>'+
+   '<button class="btn ghost block sm" style="margin-top:8px" id="tShow">Не знаю — показать</button><div id="tFb"></div></div>';
+  const inp=document.getElementById("tIn");inp.focus();
+  const reveal=function(r){const ok=r!=="no";if(r==="ok")addXP(5);else if(r==="almost")addXP(2);S.stats.trans++;save();speak(item.ro);
+    document.getElementById("tChk").classList.add("hidden");document.getElementById("tShow").classList.add("hidden");
+    document.getElementById("tFb").innerHTML='<div class="fb '+(ok?"ok":"no")+'">'+(ok?(r==="almost"?"Почти! Диакритика.":"Верно! 🎉"):"Ответ:")+' <span class="ans">'+esc(item.ro)+'</span></div>'+
+     '<div class="row" style="margin-top:10px"><button class="btn gd sm" onclick="deckAdd(\''+esc(item.ro).replace(/'/g,"\\'")+'\',\''+esc(item.ru).replace(/'/g,"\\'")+'\')&&toast(\'Добавлено ➕\')">➕ В Anki</button>'+
+     '<button class="btn mg block" onclick="newTrans()">Следующее →</button></div>';};
+  const submit=function(){const r=checkText(inp.value,item.ro);inp.classList.add(r==="no"?"no":"ok");inp.disabled=true;reveal(r);};
+  document.getElementById("tChk").onclick=submit;
+  document.getElementById("tShow").onclick=function(){inp.value=item.ro;inp.disabled=true;reveal("no");};
+  inp.addEventListener("keydown",e=>{if(e.key==="Enter"&&!inp.disabled)submit();});
+}
+/* ====== VIEW: DECK (Anki) ====== */
+let revQueue=null,revCard=null,revShown=false;
+function renderDeck(){
+  const all=Object.values(S.deck),due=dueCards();
+  let h='<h2 style="margin-bottom:4px">Мой словарь · Anki</h2><p class="sub" style="margin-bottom:12px">SM-2 показывает слова точно тогда, когда ты их вот-вот забудешь.</p>'+
+   '<div class="grid g3" style="margin-bottom:14px"><div class="stat"><div class="n neon">'+all.length+'</div><div class="l">всего карт</div></div>'+
+   '<div class="stat"><div class="n neon-mg">'+due.length+'</div><div class="l">к повтору</div></div>'+
+   '<div class="stat"><div class="n" style="color:var(--gd)">'+(S.stats.rev||0)+'</div><div class="l">повторов</div></div></div>';
+  if(due.length)h+='<button class="btn mg block" onclick="startReview()" style="margin-bottom:14px">🔁 Повторить '+due.length+' слов</button>';
+  else if(all.length)h+='<div class="card"><b>Сейчас повторять нечего ✅</b><p class="sub">Возвращайся позже или добавляй слова из «Чтения» и «Перевода».</p></div>';
+  else h+='<div class="card"><b>Словарь пуст</b><p class="sub">Добавляй слова кнопкой «➕ В Anki» в «Переводе» и «Чтении».</p></div>';
+  if(all.length){h+='<div class="eyebrow" style="margin:6px 0 8px">Все слова ('+all.length+')</div>';
+    all.sort((a,b)=>(a.due||0)-(b.due||0)).slice(0,300).forEach(c=>{const d=Math.ceil(((c.due||0)-Date.now())/864e5);
+      h+='<div class="list-item">'+spk(c.ro)+'<div style="flex:1;min-width:0"><div class="ro" style="font-size:17px">'+esc(c.ro)+'</div><div class="sub">'+esc(c.ru)+'</div></div><span class="tag">'+(d<=0?"сейчас":"через "+d+"д")+'</span></div>';});}
+  app.innerHTML=h;
+}
+function startReview(){revQueue=shuffle(dueCards());nextReview();}
+function nextReview(){
+  if(!revQueue||!revQueue.length){openModal('<h3 style="margin-bottom:8px">Повторение завершено ✅</h3><p class="sub">Слова пересчитаны по SM-2.</p><button class="btn block" style="margin-top:14px" onclick="closeModal();render()">Закрыть</button>');renderDeck();return;}
+  revCard=revQueue.shift();revShown=false;drawReview();
+}
+function drawReview(){
+  const c=revCard;
+  openModal('<div class="q-tag" style="text-align:center">Карточка · осталось '+(revQueue.length+1)+'</div>'+
+   '<div style="text-align:center;margin:18px 0 8px"><div class="ro" style="font-size:34px;color:var(--mg);text-shadow:var(--glow-mg)">'+esc(c.ro)+'</div><div style="margin-top:12px">'+spk(c.ro)+'</div></div>'+
+   '<div id="revBack">'+(revShown?"":'<button class="btn block" onclick="showBack()">Показать перевод</button>')+'</div>');
+  if(revShown)showBack();
+}
+function showBack(){revShown=true;if(SPEAK_OK)speak(revCard.ro);
+  document.getElementById("revBack").innerHTML='<div style="text-align:center;font-size:22px;margin:6px 0 4px">'+esc(revCard.ru)+'</div>'+
+   '<div class="grade"><button class="g0" onclick="grade(0)">Забыл<small>&lt;1м</small></button>'+
+   '<button class="g3" onclick="grade(3)">Трудно<small>SM-2</small></button>'+
+   '<button class="g4" onclick="grade(4)">Хорошо<small>SM-2</small></button>'+
+   '<button class="g5" onclick="grade(5)">Легко<small>SM-2</small></button></div>';}
+function grade(q){sm2(revCard,q);S.stats.rev=(S.stats.rev||0)+1;addXP(q>=4?4:q>=3?2:1);quest("rev",1);save();nextReview();}
+/* ====== VIEW: READ (медиа-хаб) ====== */
+function tokenizeLine(line){
+  return line.split(" ").map(function(tok){
+    var m=tok.match(/^([^A-Za-zĂÂÎȘȚăâîșț]*)([A-Za-zĂÂÎȘȚăâîșț-]+)([^A-Za-zĂÂÎȘȚăâîșț]*)$/);
+    if(!m)return esc(tok);
+    return esc(m[1])+'<span class="w" onclick="tapWord(this,\''+esc(m[2]).replace(/'/g,"\\'")+'\')">'+esc(m[2])+'</span>'+esc(m[3]);
+  }).join(" ");
+}
+function renderRead(){
+  let h='<h2 style="margin-bottom:4px">Чтение и аудио</h2><p class="sub" style="margin-bottom:12px">Тапни любое слово — перевод и кнопка в словарь. Слушай через синтез речи.</p>';
+  TEXTS.forEach(function(t,i){var locked=lvI(t.lvl)>userMaxI()+1;
+    h+='<div class="list-item" onclick="openText('+i+')"><span class="tag" style="color:var(--cy);border-color:var(--cy-d)">'+t.lvl+'</span>'+
+     '<div style="flex:1"><div style="font-weight:700;font-size:16px">'+esc(t.title)+'</div><div class="sub">'+t.body.length+' строк'+(locked?" · 🔒 выше уровня":"")+'</div></div><span style="color:var(--tx3)">›</span></div>';});
+  app.innerHTML=h;
+}
+function openText(i){
+  var t=TEXTS[i];READ_BUF=t.body.join(" ");
+  var body=t.body.map(function(line){return "<p>"+tokenizeLine(line)+"</p>";}).join("");
+  openModal('<div class="row between" style="margin-bottom:6px"><span class="tag" style="color:var(--cy);border-color:var(--cy-d)">'+t.lvl+'</span><button class="btn ghost sm" onclick="closeModal()">✕</button></div>'+
+   '<h3 style="margin-bottom:6px">'+esc(t.title)+'</h3>'+
+   '<div class="row" style="margin-bottom:10px"><button class="btn sm" onclick="speakBuf()">🔊 Озвучить весь текст</button>'+
+   '<button class="btn ghost sm" onclick="quest(\'read\',1);toast(\'Квест: текст прочитан\')">✓ Прочитал</button></div>'+
+   '<div class="reader">'+body+'</div>'+
+   '<p class="sub" style="margin-top:10px">Тапни слово → перевод снизу. Незнакомые формы могут не находиться — это нормально.</p>');
+}
+function tapWord(el,w){
+  var act=document.querySelectorAll(".reader .w.act");for(var i=0;i<act.length;i++)act[i].classList.remove("act");
+  el.classList.add("act");var clean=w.replace(/-/g,"");var tr=lookup(clean)||lookup(w);
+  openSheet(w,tr||"перевод не найден",!!tr);speak(w);
+}
+/* word sheet */
+var sheet=document.getElementById("sheet"),sheetWord="",sheetTr="",sheetCan=false;
+function openSheet(w,tr,can){sheetWord=w;sheetTr=tr;sheetCan=can;
+  document.getElementById("shWord").textContent=w;document.getElementById("shTr").textContent=tr;
+  document.getElementById("shAdd").style.opacity=can?1:.4;document.getElementById("shAdd").disabled=!can;sheet.classList.add("on");}
+document.getElementById("shClose").onclick=function(){sheet.classList.remove("on");};
+document.getElementById("shSpeak").onclick=function(){speak(sheetWord);};
+document.getElementById("shAdd").onclick=function(){if(sheetCan&&deckAdd(sheetWord.toLowerCase(),sheetTr))toast("Добавлено в Anki ➕");sheet.classList.remove("on");};
+/* ====== VIEW: OATH ====== */
+var oTab="text",civicCard=null,civicShown=false;
+function renderOath(){
+  app.innerHTML='<h2 style="margin-bottom:4px">Подготовка к присяге</h2><p class="sub" style="margin-bottom:12px">Текст присяги, симулятор консула, гимн и каверзные вопросы.</p>'+
+   '<div class="seg"><button class="'+(oTab==="text"?"on":"")+'" onclick="oSet(\'text\')">Присяга</button>'+
+   '<button class="'+(oTab==="consul"?"on":"")+'" onclick="oSet(\'consul\')">Консул</button>'+
+   '<button class="'+(oTab==="hymn"?"on":"")+'" onclick="oSet(\'hymn\')">Гимн</button>'+
+   '<button class="'+(oTab==="tips"?"on":"")+'" onclick="oSet(\'tips\')">Советы</button></div><div id="oBody"></div>';
+  ({text:oText,consul:oConsul,hymn:oHymn,tips:oTips}[oTab])();
+}
+function oSet(t){oTab=t;renderOath();}
+function oText(){
+  var oath=TEXTS[TEXTS.length-1].body;READ_BUF=oath.join(" ");
+  var body=oath.map(function(l){return "<p>"+tokenizeLine(l)+"</p>";}).join("");
+  document.getElementById("oBody").innerHTML='<div class="card glow"><div class="corner"></div><div class="eyebrow">Jurământul de credință</div>'+
+   '<div class="reader" style="margin-top:8px;font-size:19px;line-height:1.9">'+body+'</div>'+
+   '<div class="row" style="margin-top:12px">'+spk(oath.join(" "))+'<button class="btn block" onclick="speakBuf()">🔊 Прослушать присягу</button></div></div>'+
+   '<div class="card"><div class="eyebrow">Перевод</div><p style="margin-top:6px">«Клянусь быть преданным родине и румынскому народу, защищать национальные права и интересы, соблюдать Конституцию и законы Румынии.»</p>'+
+   '<p class="sub" style="margin-top:8px">Выучи присягу наизусть и тренируй произношение — на церемонии её произносят вслух.</p></div>';
+}
+function oConsul(){
+  document.getElementById("oBody").innerHTML='<div class="card glow"><div class="eyebrow">Симулятор · вопрос консула</div><div id="civicArea" style="margin-top:8px"></div></div>';
+  newCivic();
+}
+function newCivic(){civicCard=rnd(CIVICS);civicShown=false;drawCivic();}
+function drawCivic(){
+  var c=civicCard;
+  document.getElementById("civicArea").innerHTML='<div class="q-prompt" style="font-size:20px;color:var(--tx)">'+esc(c.q)+'</div>'+
+   '<div class="sub" style="text-align:center;margin-top:-4px">'+esc(c.ru)+'</div>'+
+   '<div class="row" style="justify-content:center;margin:10px 0">'+spk(c.q)+'</div>'+
+   '<div id="civicBack">'+(civicShown?"":'<button class="btn block" onclick="showCivic()">Показать ответ</button>')+'</div>';
+  if(civicShown)showCivic();
+}
+function showCivic(){civicShown=true;speak(civicCard.a);
+  document.getElementById("civicBack").innerHTML='<div class="fb ok" style="text-align:left"><div class="ro" style="font-size:17px">'+esc(civicCard.a)+'</div><small>💡 '+esc(civicCard.h)+'</small></div>'+
+   '<div class="row" style="margin-top:10px">'+spk(civicCard.a)+'<button class="btn mg block" onclick="newCivic()">Следующий вопрос →</button></div>';}
+function oHymn(){
+  document.getElementById("oBody").innerHTML='<div class="card glow"><div class="eyebrow">Imnul național</div>'+
+   '<h3 style="margin:8px 0 4px">«Deșteaptă-te, române!»</h3>'+
+   '<p class="sub">Государственный гимн Румынии. Слова — Андрей Мурешану (1848), музыка — Антон Панн. Связан с революцией 1848 года.</p>'+
+   '<div class="card" style="background:var(--bg2);margin-top:12px"><div class="eyebrow">Первая строка</div>'+
+   '<p class="ro" style="font-size:18px;margin-top:6px">Deșteaptă-te, române, din somnul cel de moarte…</p>'+
+   '<div class="row" style="margin-top:8px">'+spk("Deșteaptă-te, române, din somnul cel de moarte")+'<button class="btn sm" onclick="speak(\'Deșteaptă-te, române, din somnul cel de moarte\')">🔊 Произнести</button></div></div>'+
+   '<p class="sub" style="margin-top:12px">Официально исполняются строфы 1, 2, 4 и 11. Полный текст (в общественном достоянии) есть на официальных ресурсах — выучи указанные строфы.</p></div>'+
+   '<div class="card"><div class="eyebrow">Факты</div><ul style="margin:8px 0 0;padding-left:18px;color:var(--tx2)">'+
+   '<li style="margin:6px 0">Автор слов: <span class="ro" style="color:var(--tx)">Andrei Mureșanu</span></li>'+
+   '<li style="margin:6px 0">Год стихотворения: <span class="ro" style="color:var(--tx)">1848</span></li>'+
+   '<li style="margin:6px 0">Был также гимном Молдовы в 1991–1994 гг.</li></ul></div>';
+}
+function oTips(){
+  document.getElementById("oBody").innerHTML='<div class="card"><div class="eyebrow">Каверзные вопросы — как держаться</div>'+
+   '<ul style="margin:8px 0 0;padding-left:18px;color:var(--tx2);line-height:1.8">'+
+   '<li style="margin:8px 0"><b style="color:var(--tx)">«De ce doriți cetățenia română?»</b> — отвечай искренне и коротко: корни, семья, связь с культурой, желание быть частью Европы. Не заучивай сухо.</li>'+
+   '<li style="margin:8px 0"><b style="color:var(--tx)">«Spuneți ceva despre dumneavoastră»</b> — подготовь 4–5 фраз о себе: имя, откуда, чем занимаешься, зачем учишь язык.</li>'+
+   '<li style="margin:8px 0"><b style="color:var(--tx)">Вопрос по истории/символам</b> — выучи вкладку «Консул»: столица, флаг, 1 декабря, Дунай, Карпаты, Эминеску.</li>'+
+   '<li style="margin:8px 0"><b style="color:var(--tx)">Главное правило</b> — не молчи. Простая правильная фраза лучше сложной с ошибкой. Спокойствие важнее идеала.</li>'+
+   '<li style="margin:8px 0"><b style="color:var(--tx)">Произношение</b> — тренируй присягу и ответы вслух через 🔊, повторяй за синтезом.</li></ul></div>'+
+   '<div class="card glow"><div class="eyebrow">Образец рассказа о себе</div>'+
+   '<div class="reader" style="margin-top:8px"><p>Bună ziua. Mă numesc … . Sunt din … și locuiesc în … . Învăț limba română în fiecare zi pentru că vreau să fac parte din această țară.</p></div>'+
+   '<button class="btn block" style="margin-top:10px" onclick="speak(\'Bună ziua. Mă numesc. Sunt din și locuiesc în. Învăț limba română în fiecare zi pentru că vreau să fac parte din această țară.\')">🔊 Прослушать образец</button></div>';
+}
+/* ====== АДАПТИВНЫЙ ТЕСТ ====== */
+var testState=null;
+function startTest(){testState={q:0,total:20,di:1,used:[],perLvl:{},correct:0};LV.forEach(l=>testState.perLvl[l]={c:0,t:0});nextTestQ();}
+function pickQ(di){
+  var order=[di];for(var d=1;d<LV.length;d++){if(di-d>=0)order.push(di-d);if(di+d<LV.length)order.push(di+d);}
+  for(var k=0;k<order.length;k++){var lv=LV[order[k]];var cand=[];for(var i=0;i<QUIZ.length;i++)if(QUIZ[i].lvl===lv&&testState.used.indexOf(i)<0)cand.push(i);if(cand.length)return rnd(cand);}
+  return Math.random()*QUIZ.length|0;
+}
+function nextTestQ(){
+  if(testState.q>=testState.total){finishTest();return;}
+  var idx=pickQ(testState.di);testState.used.push(idx);var item=QUIZ[idx];
+  var opts=shuffle(item.o.map(function(o,i){return{o:o,correct:i===item.a};}));
+  var pct=Math.round(testState.q/testState.total*100);
+  var oh="";opts.forEach(function(o){oh+='<button class="opt" data-c="'+(o.correct?1:0)+'">'+esc(o.o)+'</button>';});
+  openModal('<div class="row between"><div class="eyebrow">Тест уровня · '+(testState.q+1)+'/'+testState.total+'</div><span class="tag">'+item.lvl+'</span></div>'+
+   '<div class="tprog" style="margin-top:10px"><i style="width:'+pct+'%"></i></div><div class="q-prompt" style="font-size:20px">'+esc(item.q)+'</div><div id="testOpts">'+oh+'</div>');
+  var btns=document.querySelectorAll("#testOpts .opt");
+  btns.forEach(function(b){b.onclick=function(){answerTest(b,item);};});
+}
+function answerTest(b,item){
+  var correct=b.dataset.c==="1";
+  document.querySelectorAll("#testOpts .opt").forEach(function(x){x.disabled=true;if(x.dataset.c==="1")x.classList.add("ok");});
+  if(!correct)b.classList.add("no");
+  testState.perLvl[item.lvl].t++;
+  if(correct){testState.perLvl[item.lvl].c++;testState.correct++;testState.di=Math.min(LV.length-1,testState.di+1);}
+  else testState.di=Math.max(0,testState.di-1);
+  testState.q++;setTimeout(nextTestQ,correct?500:1050);
+}
+function finishTest(){
+  var lvl="A1";
+  for(var i=0;i<LV.length;i++){var p=testState.perLvl[LV[i]];if(p.t>=2&&p.c/p.t>=0.6)lvl=LV[i];}
+  S.level=lvl;S.quests=genQuests();save();
+  openModal('<div style="text-align:center"><div style="font-size:54px">🎯</div><div class="eyebrow">Результат</div>'+
+   '<h2 style="font-size:40px;margin:6px 0" class="neon-mg">'+lvl+'</h2>'+
+   '<p class="sub">Верных ответов: '+testState.correct+'/'+testState.total+'. Контент и квесты настроены под твой уровень.</p>'+
+   '<button class="btn block" style="margin-top:16px" onclick="closeModal();go(\'home\')">Начать обучение →</button></div>');
+}
+/* ====== НАСТРОЙКИ / ДАННЫЕ ====== */
+document.getElementById("gearBtn").onclick=openSettings;
+function openSettings(){
+  openModal('<div class="row between" style="margin-bottom:10px"><h3>Настройки и данные</h3><button class="btn ghost sm" onclick="closeModal()">✕</button></div>'+
+   '<div class="card" style="margin:0 0 12px"><div class="eyebrow">'+(canStore?"Сохранение активно":"Внимание")+'</div>'+
+   '<p class="sub" style="margin-top:6px">'+(canStore?"Прогресс сохраняется в этом браузере автоматически. Делай экспорт как бэкап.":"Автосохранение недоступно (режим предпросмотра). <b>Скачай HTML и открой локально</b>, либо пользуйся экспортом.")+'</p></div>'+
+   '<div class="row" style="margin-bottom:10px"><button class="btn sm" onclick="exportData()">⬇ Экспорт</button>'+
+   '<button class="btn ghost sm" onclick="document.getElementById(\'impF\').click()">⬆ Импорт</button>'+
+   '<input type="file" id="impF" accept="application/json" style="display:none"></div>'+
+   '<button class="btn ghost block sm" style="margin-bottom:10px" onclick="speak(\'Bună ziua! Învățăm limba română.\')">🔊 Проверить голос устройства</button>'+
+   '<button class="btn ghost block sm" onclick="installPrompt()">📲 Установить как приложение</button>'+
+   '<div class="card" style="margin:12px 0 0;border-color:#7f1d2b"><div class="eyebrow" style="color:#fb7185">Опасная зона</div>'+
+   '<button class="btn ghost block sm" style="margin-top:8px;border-color:#7f1d2b;color:#fb7185" onclick="resetAll()">Сбросить весь прогресс</button></div>');
+  var f=document.getElementById("impF");if(f)f.onchange=importData;
+}
+function exportData(){var blob=new Blob([JSON.stringify(S,null,2)],{type:"application/json"});var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="vorbeste-progres-"+todayStr()+".json";a.click();toast("Прогресс экспортирован");}
+function importData(e){var f=e.target.files[0];if(!f)return;var r=new FileReader();
+  r.onload=function(){try{var d=JSON.parse(r.result);if(typeof d.xp!=="number"||!d.deck)throw 0;S=d;mem=d;save();toast("Прогресс восстановлен");closeModal();render();}catch(_){toast("Файл не распознан");}};r.readAsText(f);}
+function resetAll(){if(confirm("Сбросить весь прогресс безвозвратно?")){S=fresh();mem=S;save();toast("Сброшено");closeModal();go("home");}}
+/* ====== PWA ====== */
+var ICON="data:image/svg+xml,"+encodeURIComponent("<svg xmlns='http://www.w3.org/2000/svg' width='512' height='512'><rect width='512' height='512' rx='96' fill='#06070d'/><rect x='26' y='26' width='460' height='460' rx='78' fill='none' stroke='#22d3ee' stroke-width='10'/><text x='50%' y='53%' font-size='220' fill='#f43f9d' text-anchor='middle' dominant-baseline='middle' font-family='Arial' font-weight='bold'>RO</text></svg>");
+var MANIFEST={name:"Vorbește — Română A1→C2",short_name:"Vorbește",start_url:".",scope:".",display:"standalone",orientation:"portrait",background_color:"#06070d",theme_color:"#06070d",description:"Автономный тренажёр румынского языка",icons:[{src:ICON,sizes:"512x512",type:"image/svg+xml",purpose:"any maskable"}]};
+try{document.getElementById("manifest").setAttribute("href",URL.createObjectURL(new Blob([JSON.stringify(MANIFEST)],{type:"application/json"})));}catch(e){}
+var deferredPrompt=null;
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();deferredPrompt=e;});
+function installPrompt(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt=null;}else toast("Установка: меню браузера → «На главный экран». Для офлайна нужен хостинг (https).");}
+var SW="const C='vorbeste-v1';self.addEventListener('install',function(e){self.skipWaiting();});self.addEventListener('activate',function(e){self.clients.claim();});self.addEventListener('fetch',function(e){e.respondWith(caches.open(C).then(function(c){return c.match(e.request).then(function(r){return r||fetch(e.request).then(function(res){try{c.put(e.request,res.clone());}catch(_){}return res;}).catch(function(){return r;});});}));});";
+if("serviceWorker"in navigator&&(location.protocol==="https:"||location.protocol==="http:")){try{navigator.serviceWorker.register(URL.createObjectURL(new Blob([SW],{type:"text/javascript"}))).catch(function(){});}catch(e){}}
+/* ====== INIT ====== */
+ensureQuests();paintHeader();render();
+</script>
+</body>
+</html>
