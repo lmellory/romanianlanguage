@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#143f38"><meta name="description" content="Vorbește — бесплатный тренажёр румынского: глаголы, слова с интервальным повторением, чтение и озвучка. Прогресс хранится в вашем браузере.">
+<title>Vorbește — румынский понемногу каждый день</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="theme.css">
+<script defer src="data.js"></script><script defer src="core.js"></script><script defer src="app.js"></script>
+</head><body>
+<header class="hdr">
+  <div class="hdr-in">
+    <div class="brand">Vorbe<span class="b">ște</span></div>
+    <span class="lvl-pill" id="lvlPill">A1</span>
+    <div class="hdr-right">
+      <span class="mini" title="Стрик"><span class="i">🔥</span><span id="hStreak">0</span></span>
+      <span class="mini" title="Опыт"><span class="i">⚡</span><span id="hXp">0</span></span>
+      <button class="gear" id="gearBtn" aria-label="Настройки">⚙️</button>
+    </div>
+  </div>
+  <div class="xpbar"><i id="xpFill"></i></div>
+</header>
+<a class="skip" href="#app">К занятиям</a><main id="app" class="wrap" tabindex="-1"></main>
+<nav class="nav" aria-label="Основные разделы"><div class="nav-in" id="nav">
+  <button data-v="home" class="on"><span class="ic">🏠</span>Дом</button>
+  <button data-v="practice"><span class="ic">🎯</span>Практика</button>
+  <button data-v="deck"><span class="ic">🧠</span>Слова</button>
+  <button data-v="read"><span class="ic">📖</span>Чтение</button>
+  <button data-v="oath"><span class="ic">🛡️</span>Культура</button>
+</div></nav>
+<div class="sheet" id="sheet">
+  <div class="h">
+    <div><div class="word ro" id="shWord"></div><div class="tr" id="shTr"></div></div>
+    <button class="x" id="shClose" aria-label="Закрыть перевод">✕</button>
+  </div>
+  <div class="row" style="margin-top:14px">
+    <button class="btn sm" id="shSpeak">🔊 Произнести</button>
+    <button class="btn mg sm" id="shAdd">➕ В словарь</button>
+  </div>
+</div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Задание или настройки" tabindex="-1" hidden><div class="box" id="modalBox"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="wrap">Для упражнений нужен JavaScript. Включите его в настройках браузера.</p></noscript></body></html>

@@ -1,0 +1,14 @@
+{
+  "name": "vorbeste",
+  "version": "2.0.0",
+  "private": true,
+  "description": "A browser-local Romanian practice companion",
+  "scripts": {
+    "test": "node --test test/*.test.cjs",
+    "start": "node server.cjs",
+    "check": "node --check app.js && node --check core.js && node --check data.js && node --check sw.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
